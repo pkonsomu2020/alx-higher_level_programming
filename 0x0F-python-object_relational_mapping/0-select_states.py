@@ -13,9 +13,9 @@ if __name__ == "__main__":
     conn = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=username,
-        passwd=password,
-        db=db_name,
+        user=sys.argv[1],
+        passwd=sys.argv[2],
+        db=sys.argv[3],
     )
 
     # create cursor object
@@ -28,8 +28,9 @@ if __name__ == "__main__":
     results = cursor.fetchall()
 
     # print results
-    for row in results:
-        print(row)
+    for rows in results:
+        print(rows)
 
     # close database connection
     db.close()
+    cursor.close()
