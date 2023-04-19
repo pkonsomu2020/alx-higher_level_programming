@@ -1,22 +1,16 @@
 #!/usr/bin/python3
-
+"""Lists all states from the database hbtn_0e_0_usa"""
 import MySQLdb
 
 if __name__ == "__main__":
     db = MySQLdb.connect(user="root", passwd="ponsomu756@", db="hbtn_0e_0_usa")
 
-    # create cursor object
     cursor = db.cursor()
+    cursor.execute("SELECT * FROM states ORDER BY id ASC")
 
-    # execute query
-    cursor.execute("SELECT * FROM states")
+    rows = cursor.fetchall()
+    for row in rows:
+        print(row)
 
-    # fetch all results
-    states = cursor.fetchall()
-
-    # print results
-    print(len(states))
-
-    # close database connection
     cursor.close()
     db.close()
