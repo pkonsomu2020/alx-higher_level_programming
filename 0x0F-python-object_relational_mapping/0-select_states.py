@@ -9,8 +9,9 @@ if __name__ == "__main__":
     cursor.execute("SELECT * FROM states ORDER BY id ASC")
 
     rows = cursor.fetchall()
-    for row in rows:
-        print(row)
+
+    for state in rows:
+        print(state)
 
     cursor.close()
     db.close()
