@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 import MySQLdb
+import sys
 
 if __name__ == "__main__":
     # connect to database
-    db = MySQLdb.connect(user="root", passwd="ponsomu756@", db="hbtn_0e_0_usa")
+    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3],
+                         host="localhost", port=3306)
 
     # create cursor object
     cursor = db.cursor()
