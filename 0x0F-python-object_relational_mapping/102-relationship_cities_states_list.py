@@ -12,7 +12,8 @@ from relationship_state import State
 if __name__ == '__main__':
     # Create a new Engine instance.
     engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
-                           .format(sys.argv[1], sys.argv[2], sys.argv[3]))
+                           .format(sys.argv[1], sys.argv[2],
+                           sys.argv[3]))
 
     # Create a configured "Session" class.
     Session = sessionmaker(bind=engine)

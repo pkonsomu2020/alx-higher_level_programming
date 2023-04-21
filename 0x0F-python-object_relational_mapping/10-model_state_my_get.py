@@ -11,18 +11,16 @@ from model_state import Base, State
 
 if __name__ == '__main__':
     # create connection
-    user = sys.argv[1]
-    passwd = sys.argv[2]
-    db_name = sys.argv[3]
-    state_name = sys.argv[4]
     engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
-                           .format(user, passwd, db_name), pool_pre_ping=True)
+                           .format(sys.argv[1], sys.argv[2],
+                                   sys.argv[3]), pool_pre_ping=True)
+
     # create session
     Session = sessionmaker(bind=engine)
     session = Session()
 
     # query database for state with name matching the argument
-    query = session.query(State).filter(State.name == state_name)
+    query = session.query(State).filter(name=sys.argv[4]).first()
 
     # print result or "Not found"
     result = query.first()

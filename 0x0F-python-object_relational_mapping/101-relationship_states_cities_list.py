@@ -12,14 +12,10 @@ from relationship_city import City
 
 if __name__ == '__main__':
     # Get MySQL credentials from command line arguments
-    mysql_user = sys.argv[1]
-    mysql_pwd = sys.argv[2]
-    mysql_db = sys.argv[3]
-
     # Start engine to interact with MySQL
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
-                           .format(mysql_user, mysql_pwd, mysql_db),
-                           pool_pre_ping=True)
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
+                           .format(sys.argv[1], sys.argv[2],
+                           sys.argv[3]), pool_pre_ping=True)
 
     # Create all tables in the engine
     Base.metadata.create_all(engine)
